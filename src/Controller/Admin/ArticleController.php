@@ -2,9 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\DTO\ArticleDto;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\ArticleCreator;
+use App\Service\ArticleUpdater;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,16 +24,15 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(ArticleCreator $articleCreator, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $article = new Article();
+        $articleDto = new ArticleDto();
 
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleType::class, $articleDto);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($article);
-            $entityManager->flush();
+            $article = $articleCreator->create($articleDto);
             return $this->redirectToRoute('article_show', ['slug' => $article->getSlug()]);
         }
 
@@ -40,13 +42,19 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/{slug}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, EntityManagerInterface $entityManager, Article $article): Response
+    public function edit(ArticleUpdater $articleUpdater, Request $request, EntityManagerInterface $entityManager, Article $article): Response
     {
-        $form = $this->createForm(ArticleType::class, $article);
+        $articleDto = new ArticleDto(
+            $article->getTitle(),
+            $article->getSlug(),
+            $article->getContent(),
+            $article->getImage()
+        );
+        $form = $this->createForm(ArticleType::class, $articleDto);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $article = $articleUpdater->update($articleDto, $article);
             return $this->redirectToRoute('article_show', ['slug' => $article->getSlug()]);
         }
 
