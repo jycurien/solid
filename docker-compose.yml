@@ -5,9 +5,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: sandbox
-      MYSQL_USER: sandbox
-      MYSQL_PASSWORD: sandbox
+      MYSQL_DATABASE: solid
+      MYSQL_USER: solid
+      MYSQL_PASSWORD: solid
     ports:
       - "3306:3306"
     volumes:

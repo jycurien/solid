@@ -1,6 +1,6 @@
-# symfony-sandbox
+# SOLID
 
-A sandbox to play and test things with Symfony
+Examples of SOLID principles implementations with Symfony
 
 ## Install
 - composer install
@@ -9,4 +9,4 @@ A sandbox to play and test things with Symfony
 - php bin/console doctrine:fixtures:load
 - npm install
 - npm run watch
-- symfony serve
+- symfony server:start -d
