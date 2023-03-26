@@ -93,6 +93,11 @@
             </div>
         </nav>
         <main class="mt-6 mb-6 flex-1 container mx-auto max-w-6xl px-2 sm:px-6 lg:px-8">
+            {% for message in app.flashes('success') %}
+                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {% block body %}{% endblock %}
         </main>
         <footer class="bg-gray-900 p-4">

@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -9,6 +10,7 @@ class AdminNotifier
 {
     public function __construct(
         private readonly MailerInterface $mailer,
+        private readonly RequestStack $requestStack,
     )
     {
     }
@@ -23,5 +25,7 @@ class AdminNotifier
         ;
 
         $this->mailer->send($email);
+
+        $this->requestStack->getSession()->getFlashBag()->add('success', 'A new article has been created: ' . $title);
     }
 }
