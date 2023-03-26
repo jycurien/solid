@@ -6,6 +6,7 @@ use App\DTO\ArticleDto;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\AdminNotifier;
 use App\Service\ArticleCreator;
 use App\Service\ArticleUpdater;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,7 +25,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(ArticleCreator $articleCreator, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(ArticleCreator $articleCreator, AdminNotifier $adminNotifier, Request $request, EntityManagerInterface $entityManager): Response
     {
         $articleDto = new ArticleDto();
 
@@ -33,6 +34,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $articleCreator->create($articleDto);
+            $adminNotifier->notifyNewArticle($article->getTitle());
             return $this->redirectToRoute('article_show', ['slug' => $article->getSlug()]);
         }
 
