@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Contract\NewArticleNotifierInterface;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 class AdminNotifier
 {
@@ -10,7 +11,8 @@ class AdminNotifier
      * @param NewArticleNotifierInterface[] $newArticleNotifiers
      */
     public function __construct(
-        private readonly array $newArticleNotifiers,
+        #[TaggedIterator(tag: 'new_article_notifier')]
+        private readonly iterable $newArticleNotifiers,
     )
     {
     }
