@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Blog - Admin Articles{% endblock %}
+
+{% block body %}
+    <h1 class="text-6xl font-bold mb-6">Admin Articles</h1>
+
+    <div class="my-6">
+        <a href="{{ url('admin_article_new') }}" class="block px-4 py-2 text-2xl bg-blue-600 text-center">Add New Article</a>
+    </div>
+
+    <table class="w-full">
+        <thead>
+            <tr class="border-b">
+                <th class="p-2">Title</th>
+                <th class="p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr class="border-b">
+                    <td class="p-2">{{ article.title }}</td>
+                    <td class="p-2 text-center">
+                        <a href="{{ url('admin_article_edit', {'slug': article.slug}) }}" class="inline-block bg-blue-600 py-2 px-4 mx-2">Edit</a>
+                        <form action="{{ url('admin_article_delete', {'slug': article.slug}) }}" method="POST" class="inline-block mx-2">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="token" value="{{ csrf_token('delete-article') }}"/>
+                            <button class="inline-block bg-red-600 py-2 px-4">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

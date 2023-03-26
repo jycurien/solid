@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Blog - Edit Article - {{ article.title }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-6xl font-bold mb-6">Edit Article - {{ article.title }}</h1>
+
+    {{ include('admin/article/_form.html.twig') }}
+{% endblock %}
+

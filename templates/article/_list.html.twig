@@ -1,0 +1,15 @@
+<div class="flex flex-wrap -mx-2">
+    {% for article in articles %}
+        <a href="{{url('article_show', {'slug': article.slug})}}" class="w-1/2 lg:flex p-2">
+            <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{ article.image }}')">
+            </div>
+            <div class="flex-1 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                <div class="mb-8">
+                    <div class="text-gray-900 font-bold text-xl mb-2">{{ article.title }}</div>
+                    <p class="text-gray-700 text-base">{{ article.content | slice(0, 100) ~ '...' | nl2br }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
