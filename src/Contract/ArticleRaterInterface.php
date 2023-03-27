@@ -6,5 +6,5 @@ use App\Entity\Article;
 
 interface ArticleRaterInterface
 {
-    public function rate(Article $article);
+    public function rate(Article $article): int;
 }

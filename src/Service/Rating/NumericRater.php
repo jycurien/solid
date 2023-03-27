@@ -8,7 +8,7 @@ use App\Entity\Article;
 class NumericRater implements ArticleRaterInterface
 {
 
-    public function rate(Article $article)
+    public function rate(Article $article): int
     {
         return rand(1, 5);
     }
