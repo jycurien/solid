@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Service\Rating\ArticleRater;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,8 +19,12 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/{slug}', name: 'show', methods: ['GET'])]
-    public function show(Article $article) : Response
+    public function show(ArticleRater $articleRater, Article $article) : Response
     {
-        return $this->render('article/show.html.twig', ['article' => $article]);
+        $starsRating = $articleRater->rate($article);
+        return $this->render('article/show.html.twig', [
+            'article' => $article,
+            'starsRating' => $starsRating,
+        ]);
     }
 }
