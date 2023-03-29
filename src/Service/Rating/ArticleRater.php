@@ -13,7 +13,7 @@ class ArticleRater
     {
     }
 
-    public function rate(Article $article)
+    public function rate(Article $article): string
     {
         return str_repeat('⭐', $this->rater->rate($article));
     }
