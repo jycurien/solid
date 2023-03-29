@@ -27,3 +27,5 @@ services:
 #            $newArticleNotifiers:
 #                - '@App\Service\EmailNotifier'
 #                - '@App\Service\FlashNotifier'
+
+    App\Contract\ArticleRaterInterface: '@App\Service\Rating\TextRater'
