@@ -1,0 +1,15 @@
+- title: 'Article 1 From Yaml File'
+  slug: 'article_1_from_yaml_file'
+  image: "https://picsum.photos/id/21/1000/600"
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet neque velit, eget consectetur ante dictum ac.'
+- title: 'Article 2 From Yaml File'
+  slug: 'article_2_from_yaml_file'
+  image: "https://picsum.photos/id/22/1000/600"
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet neque velit, eget consectetur ante dictum ac.'
+- title: 'Article 3 From Yaml File'
+  slug: 'article_3_from_yaml_file'
+  image: "https://picsum.photos/id/23/1000/600"
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet neque velit, eget consectetur ante dictum ac.'

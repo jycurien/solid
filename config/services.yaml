@@ -29,3 +29,13 @@ services:
 #                - '@App\Service\FlashNotifier'
 
     App\Contract\ArticleRaterInterface: '@App\Service\Rating\TextRater'
+
+    App\Service\Import\LocalFileImporter:
+        arguments:
+            $filePath: data/articles.yaml
+
+    App\Service\Import\ApiImporter:
+        arguments:
+            $url: https://jsonplaceholder.typicode.com/posts?userId=1
+
+    App\Contract\ImporterInterface: '@App\Service\Import\ApiImporter'
