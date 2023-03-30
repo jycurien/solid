@@ -36,4 +36,9 @@ class LocalFileImporter implements ImporterInterface
             );
         }
     }
+
+    public function getAuthToken(): string
+    {
+        return 'whatever...';
+    }
 }

@@ -36,6 +36,7 @@ services:
 
     App\Service\Import\ApiImporter:
         arguments:
-            $url: https://jsonplaceholder.typicode.com/posts?userId=1
+            $authUrl: https://dummyjson.com/auth/login
+            $articlesUrl: https://dummyjson.com/posts?limit=5
 
     App\Contract\ImporterInterface: '@App\Service\Import\ApiImporter'
