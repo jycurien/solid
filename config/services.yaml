@@ -37,6 +37,6 @@ services:
     App\Service\Import\ApiImporter:
         arguments:
             $authUrl: https://dummyjson.com/auth/login
-            $articlesUrl: https://dummyjson.com/posts?limit=5
+            $articlesUrl: https://dummyjson.com/posts?skip=5&limit=5
 
     App\Contract\ImporterInterface: '@App\Service\Import\ApiImporter'

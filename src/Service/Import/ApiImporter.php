@@ -2,6 +2,7 @@
 
 namespace App\Service\Import;
 
+use App\Contract\HasAuthTokenInterface;
 use App\Contract\ImporterInterface;
 use App\DTO\ArticleDto;
 use App\Service\ArticleCreator;
@@ -12,7 +13,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class ApiImporter implements ImporterInterface
+class ApiImporter implements ImporterInterface, HasAuthTokenInterface
 {
     public function __construct(
         private readonly HttpClientInterface $client,
