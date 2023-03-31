@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+label + ul > li {
+    color: #ff2222;
+}

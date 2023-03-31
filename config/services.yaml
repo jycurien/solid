@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    chatgpt_api_key: '%env(CHATGPT_API_KEY)%'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -40,3 +40,7 @@ services:
             $articlesUrl: https://dummyjson.com/posts?skip=5&limit=5
 
     App\Contract\ImporterInterface: '@App\Service\Import\ApiImporter'
+
+    App\Service\Moderation\ChatGPTModerator:
+        arguments:
+            $apiKey: '%chatgpt_api_key%'
