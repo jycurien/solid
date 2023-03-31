@@ -40,7 +40,6 @@ class IsSafeTextValidator extends ConstraintValidator
 
         $moderatedResults = $this->moderator->moderate($value);
         if ($moderatedResults[0]->flagged) {
-            // the argument must be a string or an object implementing __toString()
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();
