@@ -25,7 +25,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(ArticleCreator $articleCreator, AdminNotifier $adminNotifier, Request $request, EntityManagerInterface $entityManager): Response
+    public function new(ArticleCreator $articleCreator, AdminNotifier $adminNotifier, Request $request): Response
     {
         $articleDto = new ArticleDto();
 
@@ -44,7 +44,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route(path: '/{slug}', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(ArticleUpdater $articleUpdater, Request $request, EntityManagerInterface $entityManager, Article $article): Response
+    public function edit(ArticleUpdater $articleUpdater, Request $request, Article $article): Response
     {
         $articleDto = new ArticleDto(
             $article->getTitle(),
