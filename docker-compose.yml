@@ -9,7 +9,7 @@ services:
       MYSQL_USER: solid
       MYSQL_PASSWORD: solid
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
 volumes:
